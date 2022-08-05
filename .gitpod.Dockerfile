@@ -1,103 +1,17 @@
-combiner:
-  combinations:
-    - name: base
-      chunks:
-        - dep-cacert-update
-        - tool-docker
-        - tool-tailscale
-    - name: c
-      ref:
-      - base
-      chunks:
-        - lang-c
-    - name: clojure
-      ref:
-      - base
-      chunks:
-        - lang-clojure
-    - name: full
-      ref:
-      - base
-      chunks:
-        - lang-c
-        - lang-clojure
-        - lang-go:1.17.5
-        - lang-java:11
-        - lang-node:16.13.2
-        - lang-python
-        - lang-ruby:2.7
-        - lang-rust
-        - tool-brew
-        - tool-nginx
-        - tool-nix:2.3.14
-    - name: full-vnc
-      ref:
-      - full
-      chunks:
-        - tool-vnc
-    - name: go
-      ref:
-      - base
-      chunks:
-        - lang-go:1.17.5
-    - name: node
-      ref:
-      - base
-      chunks:
-        - lang-node:17.4.0
-    - name: node-lts
-      ref:
-      - base
-      chunks:
-        - lang-node:16.13.2
-    - name: python
-      ref:
-      - base
-      chunks:
-        - lang-python
-    - name: ruby-2
-      ref:
-      - base
-      chunks:
-        - lang-ruby:2.7
-    - name: rust
-      ref:
-      - base
-      chunks:
-        - lang-rust
-    - name: dotnet-vnc
-      ref:
-      - base
-      chunks:
-        - tool-vnc
-        - tool-dotnet
-    - name: postgresql
-      ref:
-      - base
-      chunks:
-        - tool-postgresql
-    - name: mysql
-      ref:
-      - base
-      chunks:
-        - tool-mysql
-    - name: mongodb
-      ref:
-      - base
-      chunks:
-        - tool-mongodb
-    - name: java-11
-      ref:
-      - base
-      chunks:
-        - lang-java:11
-    - name: java-17
-      ref:
-      - base
-      chunks:
-        - lang-java:17
-  envvars:
-    - name: PATH
-      action: merge-unique
-    - name: HOME
-      action: use-last
+RUN apt-add-respository ppa:brightbox/ruby-ng
+RUN apt-get update && apt-get install -y zlibc \
+  libgcrypt11-dev \
+  zliblg-dev \
+  build-essential \
+  git
+  
+  
+RUN apt-get install -y -q ruby2.6.3 ruby2.6.3-dev
+RUN gem install rake:11.1.2 \
+  bundler:1.11.2 \
+  --no-rdoc --no-ri
+RUN gem install jekyll:3.8.5 \
+  rouge:1.10.1 \
+  jekyll-contentful-data-import:1.8.1 \
+  jekyll-datapage-generator:1.3.0 \
+  --no-rdoc --no-ri
