@@ -4,7 +4,6 @@ image:
 
 tasks:
   - init: npm install && npx gulp copyAll && npx gulp compile
-    command: bundle install && jekyll serve
 
 ports:
   - port: 8000
