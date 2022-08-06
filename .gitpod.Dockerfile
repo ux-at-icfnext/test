@@ -11,5 +11,3 @@ RUN sudo su -c "cd /usr; curl -L https://github.com/moby/buildkit/releases/downl
 # At a minimum use Ruby 2.5 or later
 FROM ruby:2.7
 
-# Update the ruby bundler && install jekyll
-RUN gem update bundler
