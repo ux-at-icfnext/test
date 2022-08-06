@@ -12,4 +12,4 @@ RUN sudo su -c "cd /usr; curl -L https://github.com/moby/buildkit/releases/downl
 FROM ruby:2.7
 
 # Update the ruby bundler && install jekyll
-RUN gem update bundler && gem install bundler jekyll
+RUN gem update bundler
